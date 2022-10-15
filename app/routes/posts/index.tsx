@@ -1,16 +1,16 @@
 import { Link, useLoaderData } from "@remix-run/react";
 
-import { getPosts } from "~/models/post.server";
+import { getPostListings } from "~/models/post.server";
 import { json } from "@remix-run/node";
 import { useOptionalAdminUser } from "~/utils";
 
 type LoaderData = {
-  posts: Awaited<ReturnType<typeof getPosts>>;
+  posts: Awaited<ReturnType<typeof getPostListings>>;
 };
 
 export const loader = async () => {
   return json<LoaderData>({
-    posts: await getPosts(),
+    posts: await getPostListings(),
   });
 };
 
